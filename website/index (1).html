@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Site Hub — Find Fast, Browse Better.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#07070d;--bg2:#0d0d18;--card:#11121f;--card2:#161830;--ink:#f4f4fb;--muted:#8d8fa8;--line:#1f2136;--accent:#7c6cff;--blue:#4d8dff;--teal:#19c8b0;--green:#27d17f;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f5fa;--bg2:#fff;--card:#fff;--card2:#eef0fb;--ink:#12142a;--muted:#667;--line:#dde0ef;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f4f5fa;--bg2:#fff;--card:#fff;--card2:#eef0fb;--ink:#12142a;--muted:#667;--line:#dde0ef;color-scheme:light}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(900px 500px at 15% 12%,rgba(124,108,255,.12),transparent 60%),var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.hd{font-family:Outfit,Inter,system-ui,sans-serif}
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top-in{max-width:1240px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.2rem;padding-right:16px;border-right:1px solid var(--line)}
+.mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--blue));display:grid;place-items:center;font-size:1rem;color:#fff}
+.logo b{color:var(--accent)}
+.nav{display:flex;gap:10px;flex:1;overflow-x:auto}
+.nav a{padding:6px 14px;font-size:.95rem;border-radius:8px;color:var(--ink);font-weight:500;border:1px solid transparent;white-space:nowrap}
+.nav a.on{background:rgba(77,141,255,.14);border-color:rgba(77,141,255,.45)}
+.pillbox{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;font-weight:600;font-size:.78rem;white-space:nowrap}
+.pillbox .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(39,209,127,.2);margin-right:8px}
+.pillbox small{color:var(--muted);font-weight:600;letter-spacing:.06em}
+.pillbox button{background:none;border:0;padding:0;font-weight:600}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 56px}
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:center;padding:36px 0 6px}
+.tag{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:.62rem;font-weight:700;letter-spacing:.14em;color:var(--ink)}
+.tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--muted)}
+h1{font-size:clamp(2.2rem,5.2vw,4rem);line-height:1.05;letter-spacing:-.045em;margin:26px 0 30px;font-weight:900}
+h1 span{background:linear-gradient(180deg,#fff 30%,#b9bde0);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-theme="light"] h1 span{background:none;color:var(--ink)}
+.lead{color:var(--muted);font-size:1rem;max-width:620px;margin:0 0 28px}
+.soc{display:flex;flex-wrap:wrap;gap:8px 26px;border:1px solid var(--line);background:var(--card);border-radius:22px;padding:16px 22px;max-width:640px}
+.soc a{display:flex;align-items:center;gap:12px}
+.soc i{font-style:normal;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card2);display:grid;place-items:center}
+.soc small{display:block;color:var(--muted);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.1}
+.soc b{font-size:1.05rem}
+.cur{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;margin-top:16px;font-size:.74rem}
+.cur em{font-style:normal;color:var(--blue);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(2,224px);gap:18px;justify-self:center;width:auto;padding:14px 0 6px}
+.stat{border:1px solid rgba(124,108,255,.28);background:linear-gradient(160deg,var(--card2),var(--card));border-radius:20px;padding:12px;aspect-ratio:1;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 0 40px rgba(124,108,255,.08)}
+.stat{animation:bob 6.6s ease-in-out infinite;animation-delay:calc(var(--i)*.8s - 6.6s)}
+@keyframes bob{0%,100%{transform:translateY(6px)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.stat{animation:none}}
+.ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:1rem;border:1px solid}
+.ic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stat .c1{color:#4d8dff}.stat .c2{color:#a99bff}.stat .c3{color:#22d3ee}.stat .c4{color:#27d17f}
+.c1{background:rgba(77,141,255,.15);border-color:rgba(77,141,255,.4);color:var(--blue)}
+.c2{background:rgba(124,108,255,.15);border-color:rgba(124,108,255,.4);color:var(--accent)}
+.c3{background:rgba(25,200,176,.15);border-color:rgba(25,200,176,.4);color:var(--teal)}
+.c4{background:rgba(39,209,127,.15);border-color:rgba(39,209,127,.4);color:var(--green)}
+.stat b{display:block;font-size:1.8rem;line-height:1;letter-spacing:-.03em}
+.stat span{color:var(--muted);font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:32px;margin-top:20px}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 66px);align-self:start}
+aside h4{display:flex;justify-content:space-between;color:var(--muted);font-size:.8rem;letter-spacing:.16em;margin:0 0 12px;padding:0 4px}
+.cat{display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-weight:700;font-size:.76rem;text-align:left;color:var(--muted)}
+.cat:hover,.cat[aria-pressed="true"]{background:var(--card);border-color:var(--line);color:var(--ink)}
+.cat[aria-pressed="true"]{border-color:rgba(124,108,255,.5)}
+.cat em{font-style:normal;font-size:.68rem;background:var(--card2);border-radius:999px;padding:1px 9px}
+.bar{display:flex;justify-content:flex-end;margin-bottom:6px}
+.search{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;width:min(190px,100%)}
+.search input{flex:1;background:none;border:0;color:var(--ink);font:inherit;font-size:.78rem;outline:0;min-width:0}
+.kbd{border:1px solid var(--line);border-radius:6px;padding:0 5px;color:var(--muted);font-size:.65rem}
+.search:focus-within{border-color:var(--accent)}
+.sec{margin-bottom:34px}
+.sec h2{display:flex;align-items:center;gap:12px;margin:0 0 14px;font-size:1.5rem;letter-spacing:-.02em;font-family:Outfit,Inter,sans-serif}
+.sec h2::before{content:"";width:4px;height:26px;border-radius:2px;background:var(--accent)}
+.sec h2 em{font-style:normal;font-family:Inter,sans-serif;font-size:.8rem;font-weight:700;background:rgba(124,108,255,.18);color:var(--accent);border-radius:999px;padding:2px 11px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{display:flex;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.card:hover{border-color:rgba(124,108,255,.6);background:var(--card2)}
+.av{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-family:Outfit,sans-serif;background:linear-gradient(135deg,var(--accent),var(--blue));color:#fff}
+.nm{font-weight:600;display:block}
+.host{color:var(--muted);font-size:.82rem;word-break:break-all}
+.b{font-size:.6rem;font-weight:800;letter-spacing:.08em;border-radius:5px;padding:1px 6px;margin-right:6px;vertical-align:middle;text-transform:uppercase}
+.b.Featured{background:rgba(255,184,0,.16);color:#ffb800}
+.b.Trusted{background:rgba(39,209,127,.16);color:var(--green)}
+.b.New{background:rgba(77,141,255,.16);color:var(--blue)}
+.empty{color:var(--muted);padding:40px 0;text-align:center}
+footer{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;text-align:center}
+footer a{margin:0 8px}footer a:hover{color:var(--ink)}
+.ok{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+[hidden]{display:none!important}
+.pg{max-width:760px;margin:0 auto;padding:36px 0 8px}
+.pg h1{font-size:clamp(2rem,5vw,2.8rem);letter-spacing:-.03em;margin:0 0 6px}
+.pg .upd{color:var(--muted);font-size:.85rem;margin:0 0 22px}
+.pg h2{font-family:Outfit,Inter,sans-serif;font-size:1.2rem;margin:26px 0 8px}
+.pg p,.pg li{color:var(--muted);font-size:1.02rem}
+.pg li{margin:4px 0}
+.pg a.lk{color:var(--blue);text-decoration:underline}
+.fm{display:grid;gap:12px;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:20px;margin-top:18px}
+.fm label{display:grid;gap:6px;font-weight:600;font-size:.9rem}
+.fm input,.fm select,.fm textarea{font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}
+.fm input:focus,.fm select:focus,.fm textarea:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.btn{background:linear-gradient(135deg,var(--accent),var(--blue));border:0;color:#fff;font-weight:700;border-radius:12px;padding:12px 18px}
+.note{color:var(--muted);font-size:.85rem}
+.plus{width:40px;height:40px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--accent),var(--blue));color:#fff;font-size:1.5rem;line-height:1;display:grid;place-items:center;flex:none;box-shadow:0 0 22px rgba(124,108,255,.45)}
+.ghost{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-weight:600}
+.ghost:hover{border-color:var(--accent)}
+.bar{gap:8px;flex-wrap:wrap;align-items:center}
+.bar{justify-content:flex-end}.bar .search{order:3}#ed{order:2}#add{order:1}.tl{order:0}.bar .plus{width:30px;height:30px;font-size:1.2rem;box-shadow:none}#ed,#ex,#im,#rl,#xa{padding:5px 11px;font-size:.78rem}
+body:not(.admin) #add,body:not(.admin) #ed,body:not(.admin) .tl{display:none!important}
+.tl{display:flex;gap:8px}
+.catrow{display:flex;align-items:center;gap:4px}.catrow .cat{flex:1;min-width:0}
+.ctl{display:flex;gap:2px}.ctl button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:.8rem;padding:0}
+.tg{display:grid;grid-template-columns:repeat(auto-fill,1.7in);gap:12px;justify-content:start}
+.tile{position:relative;display:flex;flex-direction:column;height:1.05in;padding:8px 10px;overflow:hidden;border:1px solid #2a2b31;border-radius:20px;background:linear-gradient(180deg,#16161e,#100f14);box-shadow:none}
+.tile:hover{border-color:rgba(124,108,255,.6)}
+.ov{position:absolute;inset:0;border-radius:20px;background:none;border:0;z-index:1;cursor:pointer}
+.tp{position:absolute;top:3px;right:3px;z-index:2;display:flex;gap:2px;pointer-events:none}
+.ib{pointer-events:auto;background:none;border:0;color:var(--muted);font-size:1rem;width:24px;height:24px;border-radius:8px;padding:0}
+.ib.on{color:#ffb800}.ib:hover{color:var(--ink)}
+.lg{flex:1;min-height:0;position:relative}
+.lt{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font:800 1.3rem Outfit,sans-serif;background:linear-gradient(135deg,var(--accent),var(--blue));color:#fff}
+.hs{font-size:.8rem;font-weight:600;line-height:1.25;color:#e9e9f5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ds{font-size:.7rem;font-weight:500;line-height:1.2;color:#b4b6cc;opacity:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.blank{border:1px dashed var(--line);border-radius:24px;padding:48px 20px;text-align:center;color:var(--muted)}.blank .hd{font-size:1.6rem;color:var(--ink);margin:0 0 6px}
+.md{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.6);display:grid;place-items:center;padding:16px}
+.mc{width:min(460px,100%);max-height:90vh;overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:20px}
+.mc h2{margin:0 0 10px;font-family:Outfit,Inter,sans-serif}
+.mc .fm{border:0;padding:0;margin:0;background:none}
+.row{display:flex;gap:8px;margin-top:6px}
+.lp{display:flex;align-items:center;gap:12px}.lp img{max-height:48px;max-width:96px;object-fit:contain;border:1px solid var(--line);border-radius:10px;padding:4px}
+.danger{background:#e5484d}
+.fm input.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;padding:0;border:0}
+.pick{display:inline-block;text-align:center;cursor:pointer}
+.lt{position:absolute;inset:0;margin:auto}
+.gl{width:12px;height:12px;vertical-align:-1px;margin-right:4px;fill:none;stroke:currentColor;stroke-width:2}
+.tile .hs{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;text-align:center;color:var(--muted);font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.sec h2{font-size:1.15rem}
+.sec h2::before{height:18px}
+.lp{overflow:hidden}
+.lg img,.lg .lt{position:absolute;inset:0;margin:auto;transform:translate(calc(var(--x,0)*1%),calc(var(--y,0)*1%)) scale(var(--s,1));opacity:calc(var(--o,100)*.01);mix-blend-mode:var(--b,normal)}
+.lg img{width:100%;height:100%;object-fit:contain}
+.pv{position:relative;height:84px;width:170px;border:1px solid #2a2b31;border-radius:16px;background:linear-gradient(180deg,#16161e,#100f14);overflow:hidden}
+.pv .lg{position:absolute;inset:8px}
+.pv .note{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:6px}
+.lgrp{display:grid;gap:8px;border:1px solid var(--line);border-radius:16px;padding:12px}
+.ctl2{display:grid;gap:8px}
+.lb{display:flex;justify-content:space-between}.lb b{color:var(--accent)}
+.layout{grid-template-columns:max-content minmax(0,1fr);gap:2px}
+.layout>main{border-left:1px solid var(--line);padding-left:6px;min-width:0}
+@media (max-width:900px){.layout>main{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:14px}}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 20px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:60;font-weight:600}
+@media (max-width:900px){.catrow{flex:none}}
+@media (max-width:700px){.top-in{flex-wrap:wrap;gap:10px}.nav{order:3;flex-basis:100%}.logo{margin-right:auto}.tg{gap:10px}}
+@media (max-width:900px){
+ .hero{grid-template-columns:1fr;padding-top:28px}
+ .stats{justify-self:center;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:520px;gap:10px}.stat:nth-child(even){transform:none}
+ .layout{grid-template-columns:1fr}
+ aside{position:static}
+ .catlist{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+ .cat{width:auto;flex:none;border-color:var(--line);background:var(--card)}
+ aside h4{display:none}
+ .pillbox small,.pillbox .sep{display:none}
+ .logo{border:0;padding:0}
+}
+@media (max-width:520px){.stats{gap:8px}.stat{padding:8px;border-radius:14px}.stat b{font-size:1.2rem}.stat span{font-size:.5rem;letter-spacing:.04em}.ic{width:22px;height:22px;border-radius:7px}.ic svg{width:13px;height:13px}.nav a{padding:8px 10px}.soc{gap:12px 18px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="logo hd" href="#"><span class="mark">◆</span><span>My<b>Site</b>Hub</span></a>
+  <nav class="nav" id="nav"><a class="on" data-r="" href="#">Home</a><a data-r="about" href="#about">About</a><a data-r="request" href="#request">Request</a><a data-r="dmca" href="#dmca">DMCA</a></nav>
+  <div class="pillbox"><span><span class="dot"></span><span id="onl">0</span> <small>SITES</small></span><span class="sep" style="color:var(--line)">|</span><button id="theme" aria-label="Toggle theme"><span id="tn">🖤</span></button></div>
+</div></header>
+
+<div class="wrap">
+  <div id="home">
+  <section class="hero">
+    <div>
+      <span class="tag">CURATED COLLECTION</span>
+      <h1 class="hd"><span>Find Fast,<br>Browse Better.</span></h1>
+      <p class="lead">Browse a hand-picked list of useful websites, neatly sorted by category. Find what you need in seconds, open any site with a single tap, and star the ones you like to keep track of them.</p>
+      <div class="soc">
+        <a href="#"><i>💬</i><span><small>Join</small><b>Discord</b></span></a>
+        <a href="#"><i>✈️</i><span><small>Channel</small><b>Telegram</b></span></a>
+        <a href="#"><i>👽</i><span><small>Follow</small><b>Reddit</b></span></a>
+        <a href="#support"><i>🤍</i><span><small>Support</small><b>Donate</b></span></a>
+      </div>
+      <div class="cur">🌐 <span style="color:var(--line)">|</span> Curated &amp; Verified Directory · <em id="pl">0</em> platforms</div>
+    </div>
+    <div class="stats">
+      <div class="stat" style="--i:0"><span class="ic c1"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span><div><b class="hd" id="s1">0</b><span>Total Sites</span></div></div>
+      <div class="stat" style="--i:1"><span class="ic c2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 3 12.5 10h-8z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span><div><b class="hd" id="s2">0</b><span>Categories</span></div></div>
+      <div class="stat" style="--i:2"><span class="ic c3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b class="hd">100%</b><span>Verified Free</span></div></div>
+      <div class="stat" style="--i:3"><span class="ic c4"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 3 14.8 9 21 9.7 16.4 14 17.7 20.5 12 17.2 6.3 20.5 7.6 14 3 9.7 9.2 9"/></svg></span><div><b class="hd" id="s4">0</b><span>Favorites</span></div></div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <aside>
+      <h4>CATEGORIES <span id="cn">0</span></h4>
+      <div class="catlist" id="cats"></div>
+    </aside>
+    <main>
+      <div class="bar"><button class="plus" id="add" aria-label="Add link" title="Add link">＋</button><button class="ghost" id="ed">✎ Edit</button><span class="tl" id="tl" hidden><button class="ghost" id="ex">Export</button><button class="ghost" id="im">Import</button><button class="ghost" id="rl">Reload published</button><button class="ghost" id="xa">Exit admin</button></span><label class="search">🔍<input id="q" type="search" placeholder="Search sites..." aria-label="Search sites" autocomplete="off"><span class="kbd">⌘K</span></label></div>
+      <div id="out"></div>
+    </main>
+  </div>
+  </div>
+  <div id="page" hidden></div>
+
+  <footer>
+    <p>My Site Hub curates links. We don't host any content.</p>
+    <p><a href="#about">About</a>·<a href="#request">Request</a>·<a href="#dmca">DMCA</a>·<a href="#privacy">Privacy</a>·<a href="#terms">Terms</a></p>
+    <p>© 2026 My Site Hub · <span class="ok"></span>Systems Operational</p>
+  </footer>
+</div>
+<div id="md" class="md" hidden><div class="mc" id="mc" role="dialog" aria-modal="true"></div></div>
+<div id="toast" class="toast" hidden></div>
+<script>
+const $=id=>document.getElementById(id);
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const KEY="msh-v1";
+const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,v);return true}catch(e){return false}};
+if(location.hash==="#admin")lsSet("msh-admin","1");
+let ADMIN=lsGet("msh-admin")==="1",PUB=null,favs=[];
+try{favs=JSON.parse(lsGet("msh-fav")||"[]")}catch(e){}
+let S={cats:[],sites:[]},active="All",edit=false,editing=null,pend="",pend2="";
+const valid=d=>d&&Array.isArray(d.cats)&&Array.isArray(d.sites);
+if(ADMIN){try{const d=JSON.parse(lsGet(KEY)||"null");if(valid(d))S=d}catch(e){}}
+S.sites.forEach(x=>{if(!S.cats.includes(x.cat))S.cats.push(x.cat)});
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const BL=["normal","multiply","screen","overlay","lighten","darken","soft-light","hard-light","color-dodge","difference"];
+const nv=(v,d)=>(v===undefined||v===null||v===""||isNaN(+v))?d:+v;
+const okImg=v=>/^data:image\//.test(v||"");
+const lyr=(src,sc,x,y,o,b,ex)=>`<img src="${src}" alt=""${ex||""} style="--s:${nv(sc,1)};--x:${nv(x,0)};--y:${nv(y,0)};--o:${nv(o,100)};--b:${BL.includes(b)?b:"normal"}">`;
+function clean(d){const o={cats:d.cats.map(String),sites:d.sites.filter(t=>t&&/^https?:\/\//i.test(t.url)&&t.cat).map(t=>({id:String(t.id||uid()),url:String(t.url),cat:String(t.cat),desc:String(t.desc||""),logo:/^data:image\//.test(t.logo||"")?t.logo:"",fav:!!t.fav,scale:nv(t.scale,1),lx:nv(t.lx,0),ly:nv(t.ly,0),op:nv(t.op,100),bl:BL.includes(t.bl)?t.bl:"normal",logo2:okImg(t.logo2)?t.logo2:"",scale2:nv(t.scale2,1),lx2:nv(t.lx2,0),ly2:nv(t.ly2,0),op2:nv(t.op2,100),bl2:BL.includes(t.bl2)?t.bl2:"normal"}))};o.sites.forEach(t=>{if(!o.cats.includes(t.cat))o.cats.push(t.cat)});return o}
+const ctrls=(p,v)=>{const r=(k,l,mn,mx,st,val)=>`<label><span class="lb">${l}<b id="${p}${k}v"></b></span><input id="${p}${k}" type="range" min="${mn}" max="${mx}" step="${st}" value="${val}"></label>`;return `<div class="ctl2">${r("s","Size",20,200,5,Math.round(nv(v.s,1)*100))}${r("x","Left / Right",-50,50,1,nv(v.x,0))}${r("y","Up / Down",-50,50,1,nv(v.y,0))}${r("o","Opacity",5,100,5,nv(v.o,100))}<label>Blending<select id="${p}b">${BL.map(m=>`<option${m===v.b?" selected":""}>${m}</option>`).join("")}</select></label></div>`};
+const host=u=>{try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return u}};
+const n=c=>c==="All"?S.sites.length:S.sites.filter(x=>x.cat===c).length;
+function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>{t.hidden=true},2600)}
+function save(){if(!ADMIN)return true;try{localStorage.setItem(KEY,JSON.stringify(S));return true}catch(e){toast("Could not save. Storage may be full.");return false}}
+function openModal(h){$("mc").innerHTML=h;$("md").hidden=false;const f=$("mc").querySelector("input,textarea,button");if(f)f.focus()}
+function closeModal(){$("md").hidden=true;$("mc").innerHTML=""}
+const done=()=>{save();closeModal();refresh()};
+const btns=(yes,cls)=>`<div class="row"><button class="btn ${cls||""}" data-a="yes">${yes}</button><button type="button" class="ghost" data-a="close">Cancel</button></div>`;
+
+function cl(){
+  const row=(c,i)=>`<div class="catrow"><button class="cat" aria-pressed="${c===active}" data-c="${esc(c)}"><span>${esc(c)}</span><em>${n(c)}</em></button>${edit?`<span class="ctl"><button data-a="up" data-i="${i}" aria-label="Move up">↑</button><button data-a="dn" data-i="${i}" aria-label="Move down">↓</button><button data-a="rn" data-i="${i}" aria-label="Rename">✎</button><button data-a="del" data-i="${i}" aria-label="Delete">✕</button></span>`:""}</div>`;
+  $("cats").innerHTML=`<div class="catrow"><button class="cat" aria-pressed="${active==="All"}" data-c="All"><span>All</span><em>${n("All")}</em></button></div>`+S.cats.map(row).join("");
+}
+const tile=x=>{
+  const h=host(x.url);
+  const l1=okImg(x.logo)?lyr(esc(x.logo),x.scale,x.lx,x.ly,x.op,x.bl):lyr("https://www.google.com/s2/favicons?domain="+encodeURIComponent(h)+"&sz=128",x.scale,x.lx,x.ly,x.op,x.bl,` data-l="${esc(h[0].toUpperCase())}"`);
+  const l2=okImg(x.logo2)?lyr(esc(x.logo2),x.scale2,x.lx2,x.ly2,x.op2,x.bl2):"";
+  const ov=edit?`<button class="ov" data-a="edit" data-id="${x.id}" aria-label="Edit ${esc(h)}"></button>`:`<a class="ov" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(h)}"></a>`;
+  const ctl=edit?`<button class="ib" data-a="edit" data-id="${x.id}" aria-label="Edit">✎</button><button class="ib" data-a="rm" data-id="${x.id}" aria-label="Delete">✕</button>`:`<button class="ib star${favs.includes(x.id)?" on":""}" data-a="fav" data-id="${x.id}" aria-label="Favorite">${favs.includes(x.id)?"★":"☆"}</button>`;
+  return `<div class="tile" title="${esc(x.desc||"")}">${ov}<div class="tp">${ctl}</div><div class="lg">${l1}${l2}</div>${x.desc?`<div class="hs">${esc(x.desc)}</div>`:""}</div>`;
+};
+function render(){
+  const q=$("q").value.trim().toLowerCase();
+  if(!S.sites.length){$("out").innerHTML='<div class="blank"><p class="hd">No links yet</p><p>'+(ADMIN?"Tap the ＋ button to add your first website.":"No links have been published yet.")+'</p></div>';return}
+  const g=S.cats.filter(c=>active==="All"||c===active).map(c=>[c,S.sites.filter(x=>x.cat===c&&(!q||(host(x.url)+" "+(x.desc||"")+" "+c).toLowerCase().includes(q)))]).filter(a=>a[1].length);
+  $("out").innerHTML=g.length?g.map(([c,l])=>`<section class="sec"><h2>${esc(c)} <em>${l.length}</em></h2><div class="tg">${l.map(tile).join("")}</div></section>`).join(""):'<p class="empty">Nothing found here.</p>';
+}
+function refresh(){
+  if(active!=="All"&&!S.cats.includes(active))active="All";
+  ["onl","pl","s1"].forEach(i=>$(i).textContent=S.sites.length);
+  $("s2").textContent=S.cats.length;$("cn").textContent=S.cats.length;
+  $("s4").textContent=S.sites.filter(x=>favs.includes(x.id)).length;
+  if(!ADMIN)edit=false;document.body.classList.toggle("admin",ADMIN);$("ed").textContent=edit?"✓ Done":"✎ Edit";$("tl").hidden=!edit;
+  cl();render();
+}
+function resize(f){return new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok(c.toDataURL(f.type==="image/jpeg"?"image/jpeg":"image/png",.85))};im.onerror=no;im.src=r.result};r.onerror=no;r.readAsDataURL(f)})}
+function openForm(id){
+  const x=id?S.sites.find(a=>a.id===id):null;editing=x?x.id:null;pend=x?(x.logo||""):"";pend2=x?(x.logo2||""):"";
+  const opts=S.cats.map(c=>`<option ${(x?x.cat===c:c===active)?"selected":""}>${esc(c)}</option>`).join("");
+  openModal(`<h2>${x?"Edit link":"Add link"}</h2><form id="lf" class="fm">
+<label>1. Website link<input id="fu" type="text" inputmode="url" required placeholder="https://example.com" value="${x?esc(x.url):""}"></label>
+<label>2. Category<select id="fc">${opts}<option value="__new">＋ New category…</option></select></label>
+<input id="fn" maxlength="40" placeholder="New category name" hidden>
+<label>3. Description<textarea id="fd" rows="2" maxlength="120" placeholder="Short description">${x?esc(x.desc||""):""}</textarea></label>
+<span class="note">4. Logos — live preview</span>
+<div id="pv" class="pv"></div>
+<div class="lgrp"><b>a. Logo 1 — bottom layer</b>
+<label class="ghost pick" for="fl">📁 Choose Logo 1</label><input id="fl" class="vh" type="file" accept="image/*">
+<div id="lp" class="lp"></div>${ctrls("a",{s:x&&x.scale,x:x&&x.lx,y:x&&x.ly,o:x&&x.op,b:x&&x.bl})}</div>
+<div class="lgrp"><b>b. Logo 2 — top layer</b>
+<label class="ghost pick" for="fl2">📁 Choose Logo 2</label><input id="fl2" class="vh" type="file" accept="image/*">
+<div id="lp2" class="lp"></div>${ctrls("b",{s:x&&x.scale2,x:x&&x.lx2,y:x&&x.ly2,o:x&&x.op2,b:x&&x.bl2})}</div>
+<div class="row"><button class="btn" type="submit">Save</button><button type="button" class="ghost" data-a="close">Cancel</button></div></form>`);
+  const sel=$("fc"),nn=$("fn"),tog=()=>{nn.hidden=sel.value!=="__new";nn.required=!nn.hidden};
+  sel.onchange=tog;tog();lpv();$("mc").oninput=$("mc").onchange=e=>{if(/^[ab][sxyob]$/.test(e.target.id))lpv()};
+  const setLogo=f=>{if(!f||!/^image\//.test(f.type))return toast("Please choose an image file");resize(f).then(d=>{pend=d;lpv()}).catch(()=>toast("Could not read that image"))};
+  $("fl").onchange=e=>{setLogo(e.target.files[0]);e.target.value=""};
+  $("fl2").onchange=e=>{const f=e.target.files[0];e.target.value="";if(!f||!/^image\//.test(f.type))return;resize(f).then(d=>{pend2=d;lpv()}).catch(()=>toast("Could not read that image"))};
+  $("lp2").onclick=e=>{if(e.target.dataset.a==="nologo2"){pend2="";lpv()}};
+  $("mc").onpaste=e=>{const f=[...(e.clipboardData?e.clipboardData.files:[])].find(t=>/^image\//.test(t.type));if(f){e.preventDefault();setLogo(f)}};
+  $("mc").ondragover=e=>e.preventDefault();
+  $("mc").ondrop=e=>{e.preventDefault();setLogo(e.dataTransfer.files[0])};
+  $("lp").onclick=e=>{if(e.target.dataset.a==="nologo"){pend="";$("fl").value="";lpv()}};
+  $("lf").onsubmit=e=>{
+    e.preventDefault();
+    let u=$("fu").value.trim();if(!/^https?:\/\//i.test(u))u="https://"+u;
+    try{new URL(u)}catch(z){toast("Enter a valid link");return}
+    let cat=sel.value;
+    if(cat==="__new"){cat=nn.value.trim();if(!cat)return;const m=S.cats.find(c=>c.toLowerCase()===cat.toLowerCase());if(m)cat=m;else S.cats.push(cat)}
+    const rec={id:editing||uid(),url:u,cat,desc:$("fd").value.trim(),logo:pend,scale:+$("as").value/100,lx:+$("ax").value,ly:+$("ay").value,op:+$("ao").value,bl:$("ab").value,logo2:pend2,scale2:+$("bs").value/100,lx2:+$("bx").value,ly2:+$("by").value,op2:+$("bo").value,bl2:$("bb").value,fav:x?!!x.fav:false};
+    if(editing)S.sites[S.sites.findIndex(a=>a.id===editing)]=rec;else S.sites.push(rec);
+    done();
+  };
+}
+function lpv(){
+  const g=(id,d)=>$(id)?+$(id).value:d,gb=id=>$(id)?$(id).value:"normal";
+  [["as",0],["ax",1],["ay",1],["ao",0]].forEach(([id,sg])=>{const e=$(id+"v");if(e){const v=+$(id).value;e.textContent=(sg&&v>0?"+":"")+v+"%"}});
+  const a=pend?lyr(esc(pend),g("as",100)/100,g("ax",0),g("ay",0),g("ao",100),gb("ab")):"";
+  const b=pend2?lyr(esc(pend2),g("bs",100)/100,g("bx",0),g("by",0),g("bo",100),gb("bb")):"";
+  $("pv").innerHTML=(a||b)?`<div class="lg">${a}${b}</div>`:'<span class="note">Add a logo to see the preview</span>';
+  $("lp").innerHTML=pend?'<button type="button" class="ghost" data-a="nologo">Remove Logo 1</button>':"";
+  $("lp2").innerHTML=pend2?'<button type="button" class="ghost" data-a="nologo2">Remove Logo 2</button>':"";
+}
+function renameCat(i){
+  const o=S.cats[i];
+  openModal(`<h2>Rename category</h2><form class="fm" id="rf2"><input id="rv" maxlength="40" required value="${esc(o)}">${btns("Save")}</form>`);
+  $("rf2").onsubmit=e=>{e.preventDefault();const v=$("rv").value.trim();if(!v)return;if(v!==o&&S.cats.includes(v)){toast("That category already exists");return}S.cats[i]=v;S.sites.forEach(x=>{if(x.cat===o)x.cat=v});if(active===o)active=v;done()};
+}
+function delCat(i){
+  const o=S.cats[i],k=n(o);
+  openModal(`<h2>Delete category?</h2><p class="note">“${esc(o)}” and its ${k} link${k===1?"":"s"} will be removed.</p>${btns("Delete","danger")}`);
+  $("mc").querySelector('[data-a="yes"]').onclick=()=>{S.sites=S.sites.filter(x=>x.cat!==o);S.cats.splice(i,1);done()};
+}
+$("cats").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  const a=b.dataset.a,i=+b.dataset.i;
+  if(!a){active=b.dataset.c;refresh();return}
+  if(a==="up"&&i>0)[S.cats[i-1],S.cats[i]]=[S.cats[i],S.cats[i-1]];
+  else if(a==="dn"&&i<S.cats.length-1)[S.cats[i+1],S.cats[i]]=[S.cats[i],S.cats[i+1]];
+  else if(a==="rn")return renameCat(i);
+  else if(a==="del")return delCat(i);
+  save();refresh();
+});
+$("out").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-id]");if(!b)return;
+  const id=b.dataset.id,a=b.dataset.a,x=S.sites.find(t=>t.id===id);if(!x)return;
+  if(a==="fav"){favs=favs.includes(id)?favs.filter(f=>f!==id):[...favs,id];lsSet("msh-fav",JSON.stringify(favs));refresh()}
+  else if(a==="edit")openForm(id);
+  else if(a==="rm"){
+    openModal(`<h2>Delete link?</h2><p class="note">${esc(host(x.url))} will be removed.</p>${btns("Delete","danger")}`);
+    $("mc").querySelector('[data-a="yes"]').onclick=()=>{S.sites=S.sites.filter(t=>t.id!==id);done()};
+  }
+});
+$("md").addEventListener("click",e=>{if(e.target===$("md")||e.target.closest('[data-a="close"]'))closeModal()});
+$("add").onclick=()=>openForm();
+$("out").addEventListener("error",e=>{const i=e.target;if(i.tagName==="IMG"&&i.dataset.l){const s=document.createElement("span");s.className="lt";s.textContent=i.dataset.l;s.setAttribute("style",i.getAttribute("style")||"");i.replaceWith(s)}},true);
+$("ed").onclick=()=>{edit=!edit;refresh()};
+$("ex").onclick=()=>{
+  openModal(`<h2>Export backup</h2><p class="note">To publish: copy this text, open links.json in your GitHub repository, replace everything inside it with this text and commit. Everyone will then see this list. It also works as a backup (paste it into Import).</p><textarea id="bx" rows="8" readonly>${esc(JSON.stringify(S,(k,v)=>k==="fav"?undefined:v))}</textarea><div class="row"><button class="btn" id="cp">Copy</button><button class="ghost" data-a="close">Close</button></div>`);
+  $("bx").select();
+  $("cp").onclick=async()=>{try{await navigator.clipboard.writeText($("bx").value);toast("Copied")}catch(e){$("bx").select();toast("Press and hold to copy")}};
+};
+$("im").onclick=()=>{
+  openModal(`<h2>Import backup</h2><p class="note">This replaces your current list.</p><textarea id="bi" rows="8" placeholder="Paste backup here"></textarea><div class="row"><button class="btn" id="go">Import</button><button class="ghost" data-a="close">Cancel</button></div>`);
+  $("go").onclick=()=>{try{
+    const d=JSON.parse($("bi").value);if(!d||!Array.isArray(d.cats)||!Array.isArray(d.sites))throw 0;
+    S=clean(d);
+    S.sites.forEach(t=>{if(!S.cats.includes(t.cat))S.cats.push(t.cat)});
+    done();toast("Imported");
+  }catch(e){toast("That backup isn't valid")}};
+};
+$("q").addEventListener("input",render);
+document.addEventListener("keydown",e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("q").focus()}
+  if(e.key==="Escape"&&!$("md").hidden)closeModal();
+});
+$("theme").addEventListener("click", () => {
+  const r = document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme==="dark" : !matchMedia("(prefers-color-scheme: light)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+  $("tn").textContent = dark ? "☀️" : "🖤";
+});
+refresh();
+async function loadPub(){try{const r=await fetch("links.json?v="+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const d=await r.json();if(!valid(d))throw 0;return clean(d)}catch(e){return null}}
+loadPub().then(q=>{PUB=q;if(!q)return;if(!ADMIN||!S.sites.length){S=JSON.parse(JSON.stringify(q));if(ADMIN)save()}refresh()});
+$("rl").onclick=()=>{
+  openModal(`<h2>Reload published list?</h2><p class="note">Changes you made in this browser and haven't published will be replaced with the list currently on GitHub.</p>${btns("Reload","danger")}`);
+  $("mc").querySelector('[data-a="yes"]').onclick=async()=>{const q=await loadPub();if(!q){toast("Could not load links.json");closeModal();return}PUB=q;S=JSON.parse(JSON.stringify(q));done()};
+};
+$("xa").onclick=()=>{lsSet("msh-admin","0");ADMIN=false;edit=false;S=PUB?JSON.parse(JSON.stringify(PUB)):{cats:[],sites:[]};try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}refresh();toast("Admin mode off. Add #admin to the link to return.")};
+addEventListener("hashchange",()=>{if(location.hash==="#admin"&&!ADMIN){lsSet("msh-admin","1");location.reload()}});
+
+/* ===== PAGES (About / Request / DMCA / Privacy / Terms / Support) ===== */
+const CONTACT = "you@example.com";   // <-- put your real email here
+const SITE = "My Site Hub";
+const UPD = "Last updated: November 2026";
+const PAGES = {
+  about:{t:"About",h:`<p class="upd">${UPD}</p>
+<p>${SITE} is a personal directory of websites, sorted by category so you can find tools, resources and platforms quickly.</p>
+<h2>What we do</h2>
+<ul><li>Collect useful websites in one place.</li><li>Group them by category and let you search them.</li><li>Mark sites as Featured, Trusted or New.</li></ul>
+<h2>What we don't do</h2>
+<p>We don't host, upload or store any media files. Every card is a link to a third-party website that we don't own or control. Content on those sites is the responsibility of their owners.</p>
+<h2>Contact</h2>
+<p><a class="lk" href="mailto:${CONTACT}">${CONTACT}</a></p>`},
+  request:{t:"Request a site",h:`<p>Know a site that should be listed? Send it in and it will be reviewed.</p>
+<form class="fm" id="rf">
+<label>Site name<input id="rn" required maxlength="80" placeholder="Example Site"></label>
+<label>Website URL<input id="ru" type="url" required placeholder="https://example.com"></label>
+<label>Category<select id="rc">${S.cats.map(c => `<option>${esc(c)}</option>`).join("")}<option>Other</option></select></label>
+<label>Note (optional)<textarea id="rt" rows="3" maxlength="400" placeholder="Why should it be added?"></textarea></label>
+<button class="btn" type="submit">Send request</button>
+<span class="note">This opens your email app with the request filled in.</span>
+</form>`},
+  dmca:{t:"DMCA / Copyright",h:`<p class="upd">${UPD}</p>
+<p>${SITE} respects intellectual property rights. We only link to third-party sites and do not host any files.</p>
+<h2>Report a link</h2>
+<p>If you are a copyright owner (or their agent) and believe a listed link infringes your rights, email <a class="lk" href="mailto:${CONTACT}">${CONTACT}</a> with:</p>
+<ul><li>Your name and contact details.</li><li>A description of the work you say is infringed.</li><li>The listing on this site you want reviewed.</li><li>A statement that you act in good faith and that your information is accurate.</li><li>Your signature (typed is fine).</li></ul>
+<p>Valid notices are reviewed promptly, and the listing is removed where appropriate.</p>`},
+  privacy:{t:"Privacy Policy",h:`<p class="upd">${UPD}</p>
+<p>This site has no accounts and does not ask you for personal information.</p>
+<h2>Data</h2>
+<p>Searching and filtering happen in your browser. If you use the Request form, your email app sends the message directly and we receive only what you write.</p>
+<h2>Third parties</h2>
+<p>Links lead to other websites with their own privacy practices. Fonts may be loaded from Google Fonts.</p>
+<h2>Contact</h2>
+<p><a class="lk" href="mailto:${CONTACT}">${CONTACT}</a></p>`},
+  terms:{t:"Terms of Use",h:`<p class="upd">${UPD}</p>
+<ul><li>${SITE} is provided as-is, with no guarantee that any listed site is available, safe or accurate.</li><li>We don't own or control linked sites and aren't responsible for their content or downloads.</li><li>You are responsible for following the laws and terms that apply to you when you visit them.</li><li>These terms may change at any time.</li></ul>`},
+  support:{t:"Support",h:`<p>${SITE} is run as a personal project. If it's useful to you, the best help is to share it and send in site requests.</p>
+<p>For other ways to help, write to <a class="lk" href="mailto:${CONTACT}">${CONTACT}</a>.</p>`}
+};
+function route(){
+  const r = location.hash.slice(1), p = PAGES[r];
+  $("home").hidden = !!p; $("page").hidden = !p;
+  if(p){
+    $("page").innerHTML = `<article class="pg"><h1 class="hd">${p.t}</h1>${p.h}</article>`;
+    const f = $("rf");
+    if(f) f.addEventListener("submit", e => {
+      e.preventDefault();
+      const body = `Site: ${$("rn").value}\nURL: ${$("ru").value}\nCategory: ${$("rc").value}\nNote: ${$("rt").value}`;
+      location.href = `mailto:${CONTACT}?subject=${encodeURIComponent("Site request: " + $("rn").value)}&body=${encodeURIComponent(body)}`;
+    });
+  }
+  document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.r === (p ? r : "")));
+  window.scrollTo(0,0);
+}
+addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
